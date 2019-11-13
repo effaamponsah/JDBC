@@ -1,11 +1,11 @@
 package io.turntabl;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 
 public class DB {
 
     private static final String dbUrl = "jdbc:postgresql:northwind";
-
 
     public static void connect() throws ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
@@ -25,7 +25,7 @@ public class DB {
         } ;
     }
 
-    public static void search(String name) throws ClassNotFoundException {
+    public static void searchCustomersByName(String name) throws ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
         try(Connection db = DriverManager.getConnection(dbUrl,"dennis-effa","turntabl")) {
             Statement s = db.createStatement();
@@ -41,5 +41,54 @@ public class DB {
         } catch (SQLException e) {
             System.err.println("Connection error "+e);
         } ;
+    }
+
+    public static void searchCateByName(String name) throws ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
+        try(Connection db = DriverManager.getConnection(dbUrl,"dennis-effa","turntabl")) {
+            PreparedStatement ps = db.prepareStatement("select * from categories where category_name like ?;");
+            ps.clearParameters();
+            ps.setString(1, "%"+name+"%");
+
+            ResultSet rs = ps.executeQuery();
+            System.out.println("---------------------------------------------------------------------------------------------");
+            System.out.printf("%15s %15s %15s", "CAT_ID", "CAT_NAME",  "DESCRIPTION");
+            System.out.println();
+            System.out.println("---------------------------------------------------------------------------------------------");
+            while(rs.next()){
+                System.out.format("%15s %15s %20s", rs.getInt("category_id"), rs.getString("category_name"), rs.getString("description"));
+                System.out.println();
+            }
+        } catch (SQLException e) {
+            System.err.println("Connection error "+e);
+        } ;
+    }
+
+    public static void searchProductByName(String name) throws ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
+        try(Connection db = DriverManager.getConnection(dbUrl,"dennis-effa","turntabl")) {
+            PreparedStatement ps = db.prepareStatement("select * from categories where category_name like ?;");
+            ps.clearParameters();
+            ps.setString(1, "%"+name+"%");
+
+            ResultSet rs = ps.executeQuery();
+            System.out.println("---------------------------------------------------------------------------------------------");
+            System.out.printf("%15s %15s %15s", "CAT_ID", "CAT_NAME",  "DESCRIPTION");
+            System.out.println();
+            System.out.println("---------------------------------------------------------------------------------------------");
+            while(rs.next()){
+                System.out.format("%15s %15s %20s", rs.getInt("category_id"), rs.getString("category_name"), rs.getString("description"));
+                System.out.println();
+            }
+        } catch (SQLException e) {
+            System.err.println("Connection error "+e);
+        } ;
+    }
+    public DB() throws ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
+        try (Connection databasecon = DriverManager.getConnection(dbUrl, "dennis-effa", "turntabl")) {
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
