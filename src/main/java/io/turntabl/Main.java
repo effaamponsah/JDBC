@@ -6,10 +6,13 @@ public class Main {
 //        Scanner scanner = new Scanner(System.in);
         ProductImpl pro = new ProductImpl();
         try {
+//            gets ordered products by customer nname
 //            for (ProdcutTO sales: pro.getProducstByCustomer("Thomas Hardy")){
 //                System.out.printf("%10s %30s",sales.getProduct_name(), sales.getPrice());
 //                System.out.println();
 //            }
+
+//            gets top 5 popular products
             for (ProdcutTO sales: pro.topFiveProducts()){
                 System.out.printf("%10s %30s",sales.getProduct_name(), sales.getPrice());
                 System.out.println();
