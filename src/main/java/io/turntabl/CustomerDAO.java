@@ -1,4 +1,5 @@
 package io.turntabl;
 
-public class CustomerDAO {
+public interface CustomerDAO {
+    void orderProduct(ProdcutTO product);
 }

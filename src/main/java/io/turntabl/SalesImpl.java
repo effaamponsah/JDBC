@@ -19,9 +19,11 @@ public class SalesImpl implements  SalesDAO{
                     "inner join order_details on order_details.order_id=orders.order_id" +
                     " inner join customers on customers.customer_id = orders.customer_id inner " +
                     "join products on products.product_id=order_details.product_id where order_date " +
-                    "between date('1997-07-08')-interval '7 day' and '1997-07-08'");
+                    "between date( '1997-08-04' )-interval '7 day' and '1997-08-04'");
             ps.clearParameters();
-//            ps.setString(1, customerName);
+//            ps.setString(1, date.toString());
+//            ps.setDate(2, (java.sql.Date) date);
+
 
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
