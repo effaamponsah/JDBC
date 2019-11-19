@@ -1,7 +1,8 @@
 plugins {
     id 'java'
     id 'application'
-    //id 'distribution'
+    id 'org.springframework.boot' version '2.2.0.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 }
 
 group 'io.turntabl'
@@ -20,6 +21,7 @@ dependencies {
     compile 'org.springframework:spring-beans:5.2.1.RELEASE'
     compile 'org.springframework:spring-context:5.2.1.RELEASE'
     runtime 'org.springframework:spring-context:5.2.1.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 }
 
 application {
