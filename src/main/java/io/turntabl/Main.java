@@ -4,7 +4,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -46,5 +51,13 @@ public class Main {
 
         int numRows = template.queryForObject("select count(*) from customers", Integer.class);
         System.out.println("There are "+ numRows + " customers");
+
+//        RowMapper rowMapper = BeanPropertyRowMapper.newInstance(ProdcutTO.class);
+
+//        ProductImpl product = (ProductImpl) template.queryForObject("select contact_name, customer_id from customers where customer_id='ALFKI'",rowMapper);
+
+//        product.
+//        template.queryForObject("select contact_name from customers where contact_name= ?", new Object[]("Maria Andres"),rowMapper);
+
     }
 }

@@ -11,8 +11,17 @@
             <property name="password" value="turntabl" />
         </bean>
 
-    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-        <property name="dataSource" ref="dataSource" />
-    </bean>
+        <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+            <property name="dataSource" ref="dataSource" />
+        </bean>
+
+        <bean id="customer" class="spring.CustomerDAOImpl">
+            <property name="JdbcTemplate" ref="jdbcTemplate" />
+        </bean>
+
+        <bean id="products" class="spring.ProductDAOImpl">
+            <property name="Template" ref="jdbcTemplate" />
+        </bean>
+
 
 </beans>
